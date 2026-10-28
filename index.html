@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+  <meta name="theme-color" content="#1d3557">
+  <meta name="description" content="Disaster Ready — a browser game for students about staying safe before, during and after earthquakes, floods, heatwaves and storms.">
+  <title>Disaster Ready</title>
+  <link rel="icon" href="assets/icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div id="app">
+    <div id="stage">
+      <canvas id="game" aria-label="Disaster Ready game"></canvas>
+
+      <!-- Everything below is laid out at 960×540 and scaled to fit the screen -->
+      <div id="ui">
+        <div id="hud" class="hidden">
+          <div class="hud-box hud-level"><b id="hud-level"></b><span id="hud-phase"></span></div>
+          <div class="hud-box"><span class="lbl">Score</span><b id="hud-score">0</b></div>
+          <div class="hud-box hud-health" title="Health">
+            <svg viewBox="0 0 24 22" class="heart" aria-hidden="true"><path d="M12 21 C5 15 1 11.5 1 7 C1 3.5 3.8 1 7 1 C9.2 1 11 2.3 12 4 C13 2.3 14.8 1 17 1 C20.2 1 23 3.5 23 7 C23 11.5 19 15 12 21 Z" fill="#ef476f" stroke="#3d3a4b" stroke-width="2"/></svg>
+            <div class="bar"><i id="hud-health"></i><span id="hud-health-text"></span></div>
+          </div>
+          <div class="hud-box"><span class="lbl">Time</span><b id="hud-timer"></b></div>
+          <div class="hud-box hud-kit"><span class="lbl">Kit</span><b id="hud-kit-count"></b><span id="hud-kit-icons"></span></div>
+          <div class="hud-buttons">
+            <button id="btn-sound" class="icon-btn" aria-label="Sound on/off" title="Sound on/off">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9 H7 L12 4 V20 L7 15 H3 Z" fill="currentColor"/><path class="waves" d="M15.5 8.5 C17 10 17 14 15.5 15.5 M18 6 C21 9 21 15 18 18" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/><path class="cross" d="M16 9 L22 15 M22 9 L16 15" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+            </button>
+            <button id="btn-pause" class="icon-btn" aria-label="Pause" title="Pause (Esc)">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1" fill="currentColor"/><rect x="14" y="5" width="4" height="14" rx="1" fill="currentColor"/></svg>
+            </button>
+          </div>
+          <div id="hud-meters"></div>
+        </div>
+
+        <div id="objective" class="hidden"></div>
+        <div id="radio" class="hidden" title="Click to close">
+          <svg viewBox="0 0 32 32" class="radio-icon" aria-hidden="true"><path d="M20 9 L26 2" stroke="#3d3a4b" stroke-width="2"/><rect x="3" y="9" width="26" height="19" rx="4" fill="#3a86ff" stroke="#3d3a4b" stroke-width="2"/><circle cx="11" cy="19" r="5" fill="#e0e7ff" stroke="#3d3a4b" stroke-width="2"/><rect x="19" y="14" width="7" height="4" rx="1" fill="#ffd166"/></svg>
+          <div><b>OFFICIAL ALERT</b><p id="radio-text"></p></div>
+        </div>
+        <div id="toasts"></div>
+        <div id="vignette"></div>
+
+        <div id="touch-controls">
+          <div id="joystick"><div id="joy-knob"></div></div>
+          <button id="btn-run" aria-label="Run">RUN</button>
+          <button id="btn-action" aria-label="Action">ACT</button>
+        </div>
+
+        <div id="overlay" class="overlay hidden"></div>
+      </div>
+    </div>
+    <div id="rotate-hint">Turn your device sideways for a bigger view ↻</div>
+  </div>
+
+  <!-- Game code. Order matters: each file uses the ones above it. -->
+  <script src="js/config.js"></script>
+  <script src="js/engine/util.js"></script>
+  <script src="js/engine/storage.js"></script>
+  <script src="js/engine/input.js"></script>
+  <script src="js/engine/audio.js"></script>
+  <script src="js/gfx/draw.js"></script>
+  <script src="js/gfx/icons.js"></script>
+  <script src="js/gfx/people.js"></script>
+  <script src="js/gfx/props.js"></script>
+  <script src="js/engine/character.js"></script>
+  <script src="js/engine/world.js"></script>
+  <script src="js/engine/scene.js"></script>
+
+  <!-- Content you can edit: tips, items, facts and quiz questions -->
+  <script src="js/data/tips.js"></script>
+  <script src="js/data/items.js"></script>
+  <script src="js/data/facts.js"></script>
+  <script src="js/data/quizzes.js"></script>
+
+  <!-- Levels -->
+  <script src="js/levels/registry.js"></script>
+  <script src="js/levels/prepare.js"></script>
+  <script src="js/levels/earthquake.js"></script>
+  <script src="js/levels/flood.js"></script>
+  <script src="js/levels/heatwave.js"></script>
+  <script src="js/levels/storm.js"></script>
+
+  <!-- Menus and start-up -->
+  <script src="js/ui/hud.js"></script>
+  <script src="js/ui/screens.js"></script>
+  <script src="js/game.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
